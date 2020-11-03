@@ -1,5 +1,7 @@
+// https://leetcode.com/problems/house-robber/
 // 4 ms
 // 8.3 MB
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -16,7 +18,7 @@ public:
         for (int i = (int)a.size() - 1; i >= 0; --i) {
             dp[i] = max(a[i] + dp[i + 2], dp[i + 1]);
         }
-        return *max_element(dp.begin(), dp.end());
+        return dp[0];
     }
 };
 
