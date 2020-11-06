@@ -1,5 +1,5 @@
-// 36 ms
-// 20.7 MB
+// 32 ms
+// 20.4 MB
 #include <vector>
 #include <cassert>
 
@@ -9,16 +9,18 @@ class Solution {
 public:
     bool canPlaceFlowers(vector<int>& a, int n) {
         for (int i = 0; i < (int)a.size(); ++i) {
-            if (
-                (i - 1 >= 0 ? a[i - 1] == 0 : true) && 
-                a[i] == 0 && 
-                (i + 1 < a.size() ? a[i + 1] == 0: true)
-                ) {
+            if (get(a, i - 1) == 0 && a[i] == 0 && get(a, i + 1) == 0) {
                 a[i] = 1;
                 n--;
             }
         }
         return n <= 0;
+    }
+    inline int get(const vector<int>& a, int idx) {
+        if (0 <= idx && idx < a.size()) {
+            return a[idx];
+        }
+        return 0;
     }
 };
 
